@@ -122,8 +122,33 @@ class _InternetScreenState extends State<InternetScreen> {
                     children: [
                       ExpandableCardWidget(),
                       ExpandableCardWidget(),
+                      MyCustomIconButton()
                     ],
                   ),
+                ),
+              ),
+              const SizedBox(height: 16), // Add padding here
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 8),
+                child: Column(
+                  children: [
+                    Row(
+                      children: [
+                        Icon(Icons.receipt_long_outlined),
+                        SizedBox(width: 8), // Add space between Icon and Text
+                        Text(
+                          "Total Payment",
+                          style: TextStyle(
+                              fontSize: 16, fontWeight: FontWeight.w500),
+                        ),
+                        SizedBox(width: 8), // Add space between Text and Price
+                        Spacer(), // Fill available space
+                        Text("Rp450.000")
+                      ],
+                    ),
+                    SizedBox(height: 16), // Add padding here
+                    MyCustomButton(onPressed: emptyFunction),
+                  ],
                 ),
               ),
             ],
@@ -133,3 +158,54 @@ class _InternetScreenState extends State<InternetScreen> {
     );
   }
 }
+
+class MyCustomIconButton extends StatelessWidget {
+  const MyCustomIconButton({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return const Padding(
+      padding: EdgeInsets.fromLTRB(16.0, 20.0, 16.0, 20.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [Text("Transaction History"), Icon(Icons.arrow_forward_ios)],
+      ),
+    );
+  }
+}
+
+class MyCustomButton extends StatelessWidget {
+  const MyCustomButton({
+    Key? key,
+    required this.onPressed,
+  }) : super(key: key);
+
+  final VoidCallback onPressed;
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: double.infinity,
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: const Color(0xFFE12029),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8),
+          ),
+        ),
+        onPressed: onPressed,
+        child: const Padding(
+          padding: EdgeInsets.symmetric(vertical: 16),
+          child: Text(
+            'PAY NOW',
+            style: TextStyle(fontSize: 16, color: Colors.white),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+void emptyFunction() {}
