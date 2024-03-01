@@ -23,11 +23,11 @@ class _InternetScreenState extends State<InternetScreen> {
     return MaterialApp(
       home: Scaffold(
         appBar: const MyAppBar(title: "Internet"),
-        body: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            children: [
-              Card(
+        body: Column(
+          children: [
+            Container(
+              padding: const EdgeInsets.all(16),
+              child: Card(
                 color: const Color(0xFFFFF5E6),
                 shape: RoundedRectangleBorder(
                   side: const BorderSide(color: Color(0xFFF3CC46), width: 1),
@@ -70,9 +70,11 @@ class _InternetScreenState extends State<InternetScreen> {
                   ),
                 ),
               ),
-              Padding(
-                padding:
-                    const EdgeInsets.only(left: 6.0, right: 6.0, top: 24.0),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 6.0, right: 6.0, top: 24.0),
+              child: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -100,13 +102,16 @@ class _InternetScreenState extends State<InternetScreen> {
                   ],
                 ),
               ),
-              const SizedBox(height: 16),
-              Expanded(
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      ...List.generate(internetPackages.length, (index) {
-                        return ExpandableCardWidget(
+            ),
+            const SizedBox(height: 16),
+            Expanded(
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    ...List.generate(internetPackages.length, (index) {
+                      return Container(
+                        padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
+                        child: ExpandableCardWidget(
                           price: internetPackages[index].price,
                           dueDate: internetPackages[index].dueDate,
                           provider: internetPackages[index].provider,
@@ -122,68 +127,77 @@ class _InternetScreenState extends State<InternetScreen> {
                               _updateTotalPrice();
                             });
                           },
-                        );
-                      }),
-                      MyCustomIconButton(
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) =>
-                                  const TransactionHistoryScreen(),
-                            ),
-                          );
-                        },
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-
-              const SizedBox(height: 16), // Add padding here
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8),
-                child: Column(
-                  children: [
-                    Row(
-                      children: [
-                        Image.asset(
-                          "assets/images/icons/ic_bill.png",
-                          width: 24,
-                          height: 24,
                         ),
-                        const SizedBox(
-                            width: 8), // Add space between Icon and Text
-                        const Text(
-                          "Total Payment",
-                          style: TextStyle(
-                              fontSize: 16, fontWeight: FontWeight.w500),
-                        ),
-                        const SizedBox(
-                            width: 8), // Add space between Text and Price
-                        const Spacer(), // Fill available space
-                        Text(
-                          NumberFormat.currency(
-                            locale: 'id',
-                            symbol: 'Rp',
-                            decimalDigits: 0,
-                          ).format(
-                              _totalPrice), // Display total price in rupiah format
-                          style: const TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500,
-                            color: Color(0xFF244091),
-                          ),
-                        )
-                      ],
+                      );
+                    }),
+                    const SizedBox(height: 16),
+                    const Divider(
+                      color: Color(0xFFE9E9E9),
+                      height: 0,
+                      thickness: 6,
                     ),
-                    const SizedBox(height: 16), // Add padding here
-                    const MyCustomButton(onPressed: emptyFunction),
+                    MyCustomIconButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                const TransactionHistoryScreen(),
+                          ),
+                        );
+                      },
+                    ),
+                    const Divider(
+                      color: Color(0xFFE9E9E9),
+                      height: 45,
+                      thickness: 50,
+                    ),
                   ],
                 ),
               ),
-            ],
-          ),
+            ),
+            Container(
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                children: [
+                  Row(
+                    children: [
+                      Image.asset(
+                        "assets/images/icons/ic_bill.png",
+                        width: 24,
+                        height: 24,
+                      ),
+                      const SizedBox(
+                          width: 8), // Add space between Icon and Text
+                      const Text(
+                        "Total Payment",
+                        style: TextStyle(
+                            fontSize: 16, fontWeight: FontWeight.w500),
+                      ),
+                      const SizedBox(
+                          width: 8), // Add space between Text and Price
+                      const Spacer(), // Fill available space
+                      Text(
+                        NumberFormat.currency(
+                          locale: 'id',
+                          symbol: 'Rp',
+                          decimalDigits: 0,
+                        ).format(
+                            _totalPrice), // Display total price in rupiah format
+                        style: const TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w500,
+                          color: Color(0xFF244091),
+                        ),
+                      )
+                    ],
+                  ),
+                  const SizedBox(height: 16), // Add padding here
+                  const MyCustomButton(onPressed: emptyFunction),
+                ],
+              ),
+            ),
+          ],
         ),
       ),
     );
