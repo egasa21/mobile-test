@@ -119,7 +119,7 @@ class TransactionDetailScreen extends StatelessWidget {
               color: const Color(0xFFFAFAFC),
               alignment: Alignment.center,
               child: const Padding(
-                padding: EdgeInsets.symmetric(vertical: 16.0),
+                padding: EdgeInsets.symmetric(vertical: 16.0, horizontal: 40.0),
                 child: Text(
                   "Proses verifikasi transaksi dapat memakan waktu hingga 1x24 jam.",
                   textAlign: TextAlign.center,
