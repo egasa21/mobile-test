@@ -1,7 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:internet_feature/presentation/widgets/row_builder.dart';
+import 'package:intl/intl.dart';
 
 class ExpandableCardWidget extends StatefulWidget {
-  const ExpandableCardWidget({Key? key}) : super(key: key);
+  final double price; // Change price type to double
+  final String dueDate;
+  final String provider;
+  final String idPelanggan;
+  final String paketLayanan;
+  final bool isChecked;
+  final void Function(bool?)? onCheckboxChanged;
+
+  const ExpandableCardWidget({
+    Key? key,
+    required this.price,
+    required this.dueDate,
+    required this.provider,
+    required this.idPelanggan,
+    required this.paketLayanan,
+    required this.isChecked,
+    this.onCheckboxChanged,
+  }) : super(key: key);
 
   @override
   _ExpandableCardWidgetState createState() => _ExpandableCardWidgetState();
@@ -65,29 +84,37 @@ class _ExpandableCardWidgetState extends State<ExpandableCardWidget>
                             borderRadius: BorderRadius.circular(4),
                           ),
                           child: Image.asset(
-                            "assets/images/logo_1.png",
+                            "assets/images/nethome_logo.png",
                             width: 24,
                             height: 24,
                           ),
                         ),
                         const SizedBox(width: 8),
-                        const Column(
+                        Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              "Rp450.000",
-                              style: TextStyle(
+                              NumberFormat.currency(
+                                locale: 'id',
+                                symbol: 'Rp',
+                                decimalDigits: 0,
+                              ).format(
+                                  widget.price), // Format price as currency
+                              style: const TextStyle(
                                 fontSize: 16,
                                 fontWeight: FontWeight.w600,
                               ),
                             ),
-                            Text("Due date on 16 Feb 2024"),
+                            Text(widget.dueDate),
                           ],
                         ),
                       ],
                     ),
-                    Checkbox(value: false, onChanged: (bool? newValue) {}),
+                    Checkbox(
+                      value: widget.isChecked,
+                      onChanged: widget.onCheckboxChanged!,
+                    ),
                   ],
                 ),
               ),
@@ -97,11 +124,11 @@ class _ExpandableCardWidgetState extends State<ExpandableCardWidget>
               child: Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    _buildRow("Provider", "Nethome"),
-                    _buildRow("ID Pelanggan", "1123456789"),
-                    _buildRow("Paket Layanan", "Nethome 100 Mbps"),
+                    buildRow("Provider", widget.provider),
+                    buildRow("ID Pelanggan", widget.idPelanggan),
+                    buildRow("Paket Layanan", widget.paketLayanan),
                   ],
                 ),
               ),
@@ -140,29 +167,6 @@ class _ExpandableCardWidgetState extends State<ExpandableCardWidget>
             ),
           ],
         ),
-      ),
-    );
-  }
-
-  Widget _buildRow(String name, String value) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8.0),
-      child: Row(
-        children: [
-          Expanded(
-            child: Text(
-              name,
-            ),
-          ),
-          Expanded(
-            child: Align(
-              alignment: Alignment.centerRight,
-              child: Text(
-                value,
-              ),
-            ),
-          ),
-        ],
       ),
     );
   }
