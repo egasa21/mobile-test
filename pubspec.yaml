@@ -14,9 +14,13 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^2.0.0
+  intl: ^0.17.0
 
 flutter:
   uses-material-design: true
+  assets:
+    - assets/images/
+    - assets/images/icons/
   fonts:
     - family: Roboto
       fonts:
@@ -30,3 +34,4 @@ flutter:
         - asset: assets/fonts/Roboto-LightItalic.ttf
         - asset: assets/fonts/Roboto-Medium.ttf
         - asset: assets/fonts/Roboto-MediumItalic.ttf
+        
