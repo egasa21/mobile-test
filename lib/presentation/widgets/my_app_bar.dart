@@ -19,6 +19,7 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
         ],
       ),
       child: AppBar(
+        scrolledUnderElevation: 0,
         leading: IconButton(
           onPressed: () => Navigator.of(context).pop(),
           icon: const Icon(Icons.arrow_back_ios),
