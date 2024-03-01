@@ -70,14 +70,9 @@ class TransactionDetailScreen extends StatelessWidget {
             padding: const EdgeInsets.all(16.0),
             child: Column(
               children: [
-                buildRow(
-                    "Provider",
-                    transactionHistory
-                        .name), // Use provider from transaction history
-                buildRow("ID Pelanggan",
-                    "1123645718921"), // Placeholder data, replace as needed
-                buildRow("Paket Layanan",
-                    "Nethome 100 Mbps"), // Placeholder data, replace as needed
+                buildRow("Provider", transactionHistory.name),
+                buildRow("ID Pelanggan", "1123645718921"),
+                buildRow("Paket Layanan", transactionHistory.paketLayanan),
               ],
             ),
           ),
@@ -89,8 +84,7 @@ class TransactionDetailScreen extends StatelessWidget {
             padding: const EdgeInsets.all(16.0),
             child: Column(
               children: [
-                buildRow("No. Transaksi",
-                    "BC444724669887648110"), // Placeholder data, replace as needed
+                buildRow("No. Transaksi", "BC444724669887648110"),
                 const Divider(
                   color: Color(0xFFFAFAFC),
                   height: 0,
@@ -98,8 +92,7 @@ class TransactionDetailScreen extends StatelessWidget {
                   indent: 16,
                   endIndent: 16,
                 ),
-                buildRow("Waktu Transaksi",
-                    "1123645718921"), // Placeholder data, replace as needed
+                buildRow("Waktu Transaksi", transactionHistory.waktuTransaksi),
                 const Divider(
                   color: Color(0xFFFAFAFC),
                   height: 0,
@@ -107,22 +100,17 @@ class TransactionDetailScreen extends StatelessWidget {
                   indent: 16,
                   endIndent: 16,
                 ),
-                buildRow(
-                    "Jumlah Tagihan",
-                    transactionHistory
-                        .price), // Use price from transaction history
+                buildRow("Jumlah Tagihan", transactionHistory.price),
                 const Divider(
                   color: Color(0xFFFAFAFC),
                   thickness: 1,
                 ),
-                buildRow("Convenience Fee",
-                    "Rp5.000"), // Placeholder data, replace as needed
+                buildRow("Convenience Fee", "Rp5.000"),
                 const Divider(
                   color: Color(0xFFFAFAFC),
                   thickness: 1,
                 ),
-                buildRow("Payment Method",
-                    "BCA Virtual Account"), // Placeholder data, replace as needed
+                buildRow("Payment Method", "BCA Virtual Account"),
               ],
             ),
           ),

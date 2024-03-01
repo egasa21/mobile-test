@@ -113,6 +113,7 @@ class _InternetScreenState extends State<InternetScreen> {
                           idPelanggan: internetPackages[index].idPelanggan,
                           paketLayanan: internetPackages[index].paketLayanan,
                           isChecked: _cardSelection[index],
+                          imagePath: internetPackages[index].imagePath,
                           onCheckboxChanged: (isChecked) {
                             setState(() {
                               _cardSelection[index] = isChecked ?? false;

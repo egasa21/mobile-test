@@ -9,6 +9,7 @@ class ExpandableCardWidget extends StatefulWidget {
   final String idPelanggan;
   final String paketLayanan;
   final bool isChecked;
+  final String imagePath;
   final void Function(bool?)? onCheckboxChanged;
 
   const ExpandableCardWidget({
@@ -19,6 +20,7 @@ class ExpandableCardWidget extends StatefulWidget {
     required this.idPelanggan,
     required this.paketLayanan,
     required this.isChecked,
+     required this.imagePath,
     this.onCheckboxChanged,
   }) : super(key: key);
 
@@ -84,7 +86,7 @@ class _ExpandableCardWidgetState extends State<ExpandableCardWidget>
                             borderRadius: BorderRadius.circular(4),
                           ),
                           child: Image.asset(
-                            "assets/images/nethome_logo.png",
+                            widget.imagePath,
                             width: 24,
                             height: 24,
                           ),
