@@ -49,6 +49,7 @@ class _ExpandableCardWidgetState extends State<ExpandableCardWidget>
     return Container(
       margin: const EdgeInsets.only(bottom: 16),
       child: Card(
+        surfaceTintColor: Colors.white,
         shape: RoundedRectangleBorder(
           side: const BorderSide(color: Color(0xFFE9E9E9), width: 1),
           borderRadius: BorderRadius.circular(6),
